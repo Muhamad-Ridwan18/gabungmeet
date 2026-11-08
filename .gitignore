@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Env
+.env
+.env.local
+frontend/.env.local
+backend/.env
+*.pem
+
+# Laravel
+backend/vendor/
+backend/node_modules/
+backend/database/*.sqlite
+backend/storage/logs/*
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/bootstrap/cache/*.php
+
+# Archived Go binary artifacts
+backups/golang-api/backend/bin/
+backups/golang-api/backend/tmp/
+*.exe
+
+# Archived Go upload layout (keep folders / gitkeeps)
+backups/golang-api/storage/**/*
+!backups/golang-api/storage/**/.gitkeep
+!backups/golang-api/storage/**/README.md
+
+# Backups (ops dumps — keep golang-api source)
+backups/database/*
+backups/storage/*
+backups/logs/*
+!backups/**/.gitkeep
+!backups/golang-api/**
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.log
+
+# Coverage / build
+coverage/
+dist/
+
+backups/golang-api/backend/.env
+.env
+*.env

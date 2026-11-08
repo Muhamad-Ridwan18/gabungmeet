@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ib-community-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ibcommunity
+      POSTGRES_PASSWORD: ibcommunity
+      POSTGRES_DB: ib_community
+    ports:
+      - "5432:5432"
+    volumes:
+      - ib_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ibcommunity -d ib_community"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ib_pg_data:
