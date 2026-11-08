@@ -1,4 +1,4 @@
-# Laravel Migration Plan — Santara Pips
+# Laravel Migration Plan — GabungMeet
 
 Active stack:
 

@@ -28,11 +28,12 @@ class SettingsService
 
     public function ensureDefaults(): void
     {
+        $production = app()->environment('production');
         $defaults = [
-            self::KEY_IB_REGISTER_URL => 'https://example-broker.com/ib/register',
-            self::KEY_TELEGRAM_INVITE_URL => 'https://t.me/ibcommunity',
-            self::KEY_BROKER_TUTORIAL_URL => 'https://www.youtube.com/watch?v=yfZxu6YX1nU',
-            self::KEY_DEPOSIT_TUTORIAL_URL => 'https://www.youtube.com/watch?v=yfZxu6YX1nU',
+            self::KEY_IB_REGISTER_URL => $production ? '' : 'https://example-broker.com/ib/register',
+            self::KEY_TELEGRAM_INVITE_URL => $production ? '' : 'https://t.me/ibcommunity',
+            self::KEY_BROKER_TUTORIAL_URL => $production ? '' : 'https://www.youtube.com/watch?v=yfZxu6YX1nU',
+            self::KEY_DEPOSIT_TUTORIAL_URL => $production ? '' : 'https://www.youtube.com/watch?v=yfZxu6YX1nU',
             self::KEY_AI_FAIL_THRESHOLD => '3',
         ];
 

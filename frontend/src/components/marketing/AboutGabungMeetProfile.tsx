@@ -10,14 +10,14 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import { santaraProfile } from "@/content/santara-profile";
+import { gabungMeetProfile } from "@/content/gabungmeet-profile";
 import { ROUTES } from "@/constants";
 import { track } from "@/lib/analytics";
 import { useT } from "@/i18n/useT";
 
-export function AboutSantaraProfile() {
+export function AboutGabungMeetProfile() {
   const { t, locale } = useT();
-  const c = santaraProfile[locale === "id" ? "id" : "en"];
+  const c = gabungMeetProfile[locale === "id" ? "id" : "en"];
 
   return (
     <div className="bg-[var(--background)]">

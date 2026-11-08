@@ -53,7 +53,7 @@ export function MediaCard({
     <Link
       href={`${hrefBase}/${item.slug}`}
       className={cn(
-        "group relative shrink-0 overflow-hidden rounded-2xl bg-[#0b1220] text-white shadow-[var(--shadow)] transition duration-300 hover:-translate-y-0.5 hover:shadow-lg",
+        "group relative shrink-0 overflow-hidden rounded-2xl bg-[#243249] text-white shadow-[var(--shadow)] transition duration-300 hover:-translate-y-0.5 hover:shadow-lg",
         large ? "h-48 w-72 sm:h-52 sm:w-80" : "h-40 w-56 sm:h-44 sm:w-64",
       )}
     >

@@ -67,7 +67,7 @@ class MemberHomeService
         }
 
         return [
-            'title' => (string) ($slot['title'] ?? 'Santara Pips'),
+            'title' => (string) ($slot['title'] ?? 'GabungMeet'),
             'video_url' => $url,
             'kind' => $this->detectKind($url),
         ];
@@ -203,7 +203,7 @@ class MemberHomeService
     private function getStored(): array
     {
         $defaults = [
-            'welcome' => $this->defaultVideoSlot('Selamat datang di Santara Pips'),
+            'welcome' => $this->defaultVideoSlot('Selamat datang di GabungMeet'),
             'tutorial' => $this->defaultVideoSlot('Tutorial member'),
             'referral' => [
                 'title' => 'Link Referral',

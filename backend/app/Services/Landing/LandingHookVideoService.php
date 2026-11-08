@@ -22,7 +22,7 @@ class LandingHookVideoService
         }
 
         return [
-            'title' => (string) ($data['title'] ?? 'Santara Pips'),
+            'title' => (string) ($data['title'] ?? 'GabungMeet'),
             'video_url' => $videoUrl,
             'kind' => $this->detectKind($videoUrl),
         ];
@@ -91,7 +91,7 @@ class LandingHookVideoService
         $row = Setting::query()->find(self::SETTING_KEY);
         if (! $row || ! $row->value) {
             return [
-                'title' => 'Santara Pips',
+                'title' => 'GabungMeet',
                 'video_url' => null,
                 'video_key' => null,
                 'is_active' => false,

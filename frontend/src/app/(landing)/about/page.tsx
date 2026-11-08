@@ -1,5 +1,5 @@
-import { AboutSantaraProfile } from "@/components/marketing/AboutSantaraProfile";
+import { AboutGabungMeetProfile } from "@/components/marketing/AboutGabungMeetProfile";
 
 export default function AboutPage() {
-  return <AboutSantaraProfile />;
+  return <AboutGabungMeetProfile />;
 }

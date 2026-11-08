@@ -1,6 +1,6 @@
-# Santara Pips
+# GabungMeet
 
-Private trading community platform. Access to premium modules requires Santara Pips MT5 verification.
+Private trading community platform for copy trading education and member access.
 
 ## Stack
 
@@ -60,11 +60,12 @@ App: `http://localhost:3000`
 
 | Role | URL |
 |------|-----|
-| **API** | `https://api.santarapips.com` |
-| **Frontend** | `https://santarapips.com` (Vercel) |
+| **API** | `https://api.gabungmeet.com` |
+| **Frontend** | `https://gabungmeet.com` (Vercel) |
 
-**Vercel env:** `NEXT_PUBLIC_API_URL=https://api.santarapips.com/v1`  
-**Backend `.env`:** `APP_URL=https://api.santarapips.com` · `FRONTEND_URL=https://santarapips.com`
+**Vercel env:** `NEXT_PUBLIC_APP_NAME=GabungMeet` · `NEXT_PUBLIC_API_URL=https://api.gabungmeet.com/v1`
+
+**Backend `.env`:** `APP_URL=https://api.gabungmeet.com` · `FRONTEND_URL=https://gabungmeet.com`
 
 ## Docs
 
@@ -88,7 +89,7 @@ App: `http://localhost:3000`
 
 ## Seed users (dev)
 
-Password for all: `password123`
+Development-only password for all demo users: `password123`
 
 | Email | Role | Status |
 |-------|------|--------|
@@ -97,7 +98,9 @@ Password for all: `password123`
 | `admin@ib.local` | admin | verified |
 | `super@ib.local` | super_admin | verified |
 
-Aliases `*@santara.local` are also seeded.
+Aliases `*@gabungmeet.local` are also seeded.
+
+Production seeding creates only the configured super admin and application defaults; it does not create demo users, demo content, or known default passwords.
 
 ## P1 quick test
 

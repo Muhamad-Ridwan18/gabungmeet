@@ -65,9 +65,9 @@ export default function LandingPage() {
     locale === "id"
       ? {
           badge: "#1 Community Trading",
-          heroTitleA: "Santara",
-          heroTitleB: "Pips",
-          heroSub: "Grow Your Pips, The Santara Way.",
+          heroTitleA: "Gabung",
+          heroTitleB: "Meet",
+          heroSub: "Copy Trade · Safe · Steady Growth",
           heroBody:
             "Komunitas trading dengan edukasi, analisis pasar, dan sinyal yang membantu Anda tumbuh lebih terarah.",
           joinNow: "Daftar Gratis",
@@ -78,9 +78,9 @@ export default function LandingPage() {
         }
       : {
           badge: "#1 Community Trading",
-          heroTitleA: "Santara",
-          heroTitleB: "Pips",
-          heroSub: "Grow Your Pips, The Santara Way.",
+          heroTitleA: "Gabung",
+          heroTitleB: "Meet",
+          heroSub: "Copy Trade · Safe · Steady Growth",
           heroBody:
             "A trading community with education, market analysis, and signals that help you grow with clearer direction.",
           joinNow: "Register Free",
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
             <div
               id="hook"
-              className="animate-rise-delay relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(140deg,#0b1326,#0b1532)] p-2 text-white shadow-[0_24px_80px_rgba(10,20,48,0.5)] sm:p-3"
+              className="animate-rise-delay relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(140deg,#17243a,#1a2a46)] p-2 text-white shadow-[0_24px_80px_rgba(10,20,48,0.35)] sm:p-3"
             >
               <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/35 blur-3xl" />
               <div className="relative overflow-hidden rounded-2xl border border-white/10">
@@ -166,7 +166,7 @@ export default function LandingPage() {
                     loop={false}
                   />
                 ) : (
-                  <div className="flex aspect-[16/10] items-center justify-center gap-2 bg-[#0d1833]/90 text-white/90 md:aspect-[16/9]">
+                  <div className="flex aspect-[16/10] items-center justify-center gap-2 bg-[#20314d]/90 text-white/90 md:aspect-[16/9]">
                     <Play className="h-5 w-5 fill-current" />
                     <p className="text-sm font-medium">{t("landing.hookTitle")}</p>
                   </div>

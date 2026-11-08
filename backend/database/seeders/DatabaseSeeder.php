@@ -73,22 +73,61 @@ class DatabaseSeeder extends Seeder
 
         app(SettingsService::class)->ensureDefaults();
 
+        if (app()->environment('production')) {
+            $this->seedProductionSuperAdmin($levelIds['elite']);
+
+            return;
+        }
+
         $super = $this->seedUser('super@ib.local', 'super_admin', User::STATUS_VERIFIED, 'Super Admin', $levelIds['elite'], 5, true);
         $this->seedUser('member@ib.local', 'member', User::STATUS_ONBOARDING, 'Demo Member', $levelIds['free'], 1, false);
         $verified = $this->seedUser('verified@ib.local', 'member', User::STATUS_VERIFIED, 'Verified Member', $levelIds['free'], 5, true);
         $this->seedUser('admin@ib.local', 'admin', User::STATUS_VERIFIED, 'Demo Admin', $levelIds['pro'], 5, true);
 
-        // Legacy FE aliases
-        $this->seedUser('member@santara.local', 'member', User::STATUS_ONBOARDING, 'Member Demo', $levelIds['free'], 1, false);
-        $this->seedUser('verified@santara.local', 'member', User::STATUS_VERIFIED, 'Verified Demo', $levelIds['free'], 5, true);
-        $this->seedUser('admin@santara.local', 'admin', User::STATUS_VERIFIED, 'Admin Demo', $levelIds['pro'], 5, true);
-        $this->seedUser('super@santara.local', 'super_admin', User::STATUS_VERIFIED, 'Super Admin', $levelIds['elite'], 5, true);
+        // Additional local demo aliases
+        $this->seedUser('member@gabungmeet.local', 'member', User::STATUS_ONBOARDING, 'Member Demo', $levelIds['free'], 1, false);
+        $this->seedUser('verified@gabungmeet.local', 'member', User::STATUS_VERIFIED, 'Verified Demo', $levelIds['free'], 5, true);
+        $this->seedUser('admin@gabungmeet.local', 'admin', User::STATUS_VERIFIED, 'Admin Demo', $levelIds['pro'], 5, true);
+        $this->seedUser('super@gabungmeet.local', 'super_admin', User::STATUS_VERIFIED, 'Super Admin', $levelIds['elite'], 5, true);
 
         $this->seedContent($super);
         $this->seedSignals($super);
         $this->seedBonuses();
         $this->seedAiKnowledge();
         $this->seedDemoProgress($verified);
+    }
+
+    private function seedProductionSuperAdmin(string $levelId): void
+    {
+        if (User::query()->whereHas('role', fn ($query) => $query->where('name', 'super_admin'))->exists()) {
+            return;
+        }
+
+        $email = trim((string) env('INITIAL_ADMIN_EMAIL'));
+        $password = (string) env('INITIAL_ADMIN_PASSWORD');
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new \RuntimeException('Set INITIAL_ADMIN_EMAIL to a valid email before production seeding.');
+        }
+
+        if (strlen($password) < 32) {
+            throw new \RuntimeException('INITIAL_ADMIN_PASSWORD must contain at least 32 characters.');
+        }
+
+        if (User::query()->where('email', $email)->exists()) {
+            throw new \RuntimeException('INITIAL_ADMIN_EMAIL is already assigned to a non-super-admin account.');
+        }
+
+        $this->seedUser(
+            $email,
+            'super_admin',
+            User::STATUS_VERIFIED,
+            'GabungMeet Admin',
+            $levelId,
+            5,
+            true,
+            $password
+        );
     }
 
     private function seedUser(
@@ -98,7 +137,8 @@ class DatabaseSeeder extends Seeder
         string $fullName,
         string $levelId,
         int $currentStep,
-        bool $completed
+        bool $completed,
+        string $password = 'password123'
     ): User {
         $existing = User::query()->where('email', $email)->first();
         if ($existing) {
@@ -108,7 +148,7 @@ class DatabaseSeeder extends Seeder
         $role = Role::query()->where('name', $roleName)->firstOrFail();
         $user = User::query()->create([
             'email' => $email,
-            'password' => 'password123',
+            'password' => $password,
             'role_id' => $role->id,
             'status' => $status,
             'member_level_id' => $levelId,
@@ -164,10 +204,10 @@ class DatabaseSeeder extends Seeder
                 'cat' => 'landing-education',
                 'module' => 'landing',
                 'type' => 'article',
-                'title' => 'Why IB verification matters',
-                'slug' => 'why-ib-verification-matters',
-                'excerpt' => 'How Introducing Broker verification protects desk quality and member access.',
-                'body' => 'Private trading communities fail when anyone can join with no skin in the game. IB verification ties membership to a real MT5 path under our broker.',
+                'title' => 'Why account verification matters',
+                'slug' => 'why-account-verification-matters',
+                'excerpt' => 'How account verification protects desk quality and member access.',
+                'body' => 'Private trading communities work best when members follow a clear verification process before accessing premium features.',
                 'premium' => false,
                 'hours_ago' => 100,
             ],

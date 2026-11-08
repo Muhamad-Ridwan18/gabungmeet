@@ -1,9 +1,9 @@
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? "Santara Pips";
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? "GabungMeet";
 
 /**
  * API base URL.
  * Local/dev: same-origin `/v1` (Next.js rewrites → Laravel :8081) or explicit localhost URL.
- * Production: NEXT_PUBLIC_API_URL=https://api.santarapips.com/v1
+ * Production: NEXT_PUBLIC_API_URL=https://api.gabungmeet.com/v1
  */
 function resolveApiUrl(): string {
   const raw = (process.env.NEXT_PUBLIC_API_URL || "").trim();

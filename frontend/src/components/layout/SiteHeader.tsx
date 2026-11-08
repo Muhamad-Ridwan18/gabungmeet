@@ -32,7 +32,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/80 backdrop-blur-xl dark:bg-[rgba(7,11,20,0.82)]">
+      <header className="sticky top-0 z-40 border-b border-[var(--border)] bg-white/80 backdrop-blur-xl dark:bg-[var(--header)]">
         <div className="container-fluid flex h-[4.25rem] items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <button

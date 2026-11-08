@@ -1,4 +1,4 @@
-# Santara Pips — Laravel API
+# GabungMeet — Laravel API
 
 Active backend for the monorepo (`frontend/` = Next.js).
 
@@ -37,7 +37,7 @@ Point FE locally:
 NEXT_PUBLIC_API_URL=http://localhost:8081/v1
 ```
 
-## Demo users (`password123`)
+## Development-only demo users (`password123`)
 
 | Email | Role | Status |
 |-------|------|--------|
@@ -46,7 +46,9 @@ NEXT_PUBLIC_API_URL=http://localhost:8081/v1
 | `admin@ib.local` | admin | verified |
 | `super@ib.local` | super_admin | verified |
 
-Aliases `*@santara.local` also seeded.
+Aliases `*@gabungmeet.local` also seeded.
+
+Production seeding creates only an initial super admin and application defaults. Pass `INITIAL_ADMIN_EMAIL` and a unique `INITIAL_ADMIN_PASSWORD` of at least 32 characters to `php artisan db:seed --force`; never use the development demo password in production.
 
 ## Docs
 

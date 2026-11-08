@@ -9,7 +9,7 @@ export type ProfileStep = {
   body: string;
 };
 
-export type SantaraProfileContent = {
+export type GabungMeetProfileContent = {
   brandLine: string;
   tagline: string;
   badges: string[];
@@ -71,18 +71,18 @@ export type SantaraProfileContent = {
   disclaimer: string;
 };
 
-export const santaraProfile: Record<"id" | "en", SantaraProfileContent> = {
+export const gabungMeetProfile: Record<"id" | "en", GabungMeetProfileContent> = {
   id: {
-    brandLine: "Santara Pips",
+    brandLine: "GabungMeet",
     tagline: "Trading Education & Community",
     badges: ["Risk Management First", "100% Technical Trading"],
     whatIs: {
       kicker: "Profil",
-      title: "Apa itu Santara Pips?",
+      title: "Apa itu GabungMeet?",
       paragraphs: [
         "Membangun trader yang memahami pasar, mengelola risiko, dan mampu berdiri secara mandiri.",
-        "Santara Pips adalah komunitas edukasi trading yang dibangun berdasarkan pengalaman praktis trader dengan pengalaman lebih dari 5 tahun di pasar keuangan. Kami memahami bahwa tantangan terbesar trader pemula bukanlah kurangnya informasi, tetapi terlalu banyak informasi yang tidak terstruktur.",
-        "Karena itu, Santara Pips menyederhanakan pengalaman trading menjadi sistem pembelajaran yang terstruktur, praktis, dan berfokus pada hal-hal yang benar-benar dibutuhkan seorang trader untuk berkembang. Pendekatan Santara Pips berfokus 100% pada technical trading, dengan risk management sebagai fondasi utama dalam setiap proses pengambilan keputusan.",
+        "GabungMeet adalah komunitas edukasi trading yang dibangun berdasarkan pengalaman praktis trader dengan pengalaman lebih dari 5 tahun di pasar keuangan. Kami memahami bahwa tantangan terbesar trader pemula bukanlah kurangnya informasi, tetapi terlalu banyak informasi yang tidak terstruktur.",
+        "Karena itu, GabungMeet menyederhanakan pengalaman trading menjadi sistem pembelajaran yang terstruktur, praktis, dan berfokus pada hal-hal yang benar-benar dibutuhkan seorang trader untuk berkembang. Pendekatan GabungMeet berfokus 100% pada technical trading, dengan risk management sebagai fondasi utama dalam setiap proses pengambilan keputusan.",
       ],
     },
     notJustEntry: {
@@ -176,13 +176,13 @@ export const santaraProfile: Record<"id" | "en", SantaraProfileContent> = {
       title: "Belajar dari pengalaman",
       paragraphs: [
         "Lebih dari lima tahun pengalaman trading memberikan satu pemahaman penting: Pasar tidak dapat dikendalikan. Yang dapat dikendalikan adalah analisis, risiko, ukuran posisi, entry & exit, disiplin, respons terhadap kerugian, serta evaluasi.",
-        "Karena itu Santara Pips tidak menjanjikan bahwa setiap transaksi akan menghasilkan keuntungan. Sebaliknya, kami membangun pemahaman bahwa kerugian adalah bagian dari probabilitas trading, sementara pengelolaan risiko menentukan seberapa besar dampaknya terhadap modal.",
+        "Karena itu GabungMeet tidak menjanjikan bahwa setiap transaksi akan menghasilkan keuntungan. Sebaliknya, kami membangun pemahaman bahwa kerugian adalah bagian dari probabilitas trading, sementara pengelolaan risiko menentukan seberapa besar dampaknya terhadap modal.",
       ],
     },
     community: {
       kicker: "Komunitas",
       title: "Komunitas yang mendorong kemandirian",
-      body: "Santara Pips bukan sekadar tempat menerima informasi trading, melainkan membangun lingkungan untuk belajar, berdiskusi, berlatih, mengevaluasi, dan berkembang.",
+      body: "GabungMeet bukan sekadar tempat menerima informasi trading, melainkan membangun lingkungan untuk belajar, berdiskusi, berlatih, mengevaluasi, dan berkembang.",
       flow: "Belajar → Berdiskusi → Berlatih → Mengevaluasi → Berkembang",
       closing:
         "Member dapat bertukar perspektif, mendiskusikan kondisi market, dan mempelajari berbagai pengalaman trader lainnya. Namun setiap analisis tetap perlu dipahami dan diverifikasi oleh masing-masing trader. Kami tidak ingin menciptakan pengikut; kami ingin membantu membangun trader.",
@@ -191,34 +191,34 @@ export const santaraProfile: Record<"id" | "en", SantaraProfileContent> = {
       kicker: "Teknologi",
       title: "AI sebagai alat bantu",
       paragraphs: [
-        "Santara Pips juga memanfaatkan perkembangan AI dan teknologi untuk membantu proses pembelajaran dan analisis — mengolah informasi, mempercepat proses, membantu evaluasi, serta meningkatkan efisiensi.",
+        "GabungMeet juga memanfaatkan perkembangan AI dan teknologi untuk membantu proses pembelajaran dan analisis — mengolah informasi, mempercepat proses, membantu evaluasi, serta meningkatkan efisiensi.",
         "Namun AI bukan pengganti trader. Teknologi membantu proses, sementara trader tetap bertanggung jawab penuh atas keputusan yang diambil.",
       ],
     },
     philosophy: {
       kicker: "Filosofi",
-      title: "Filosofi Santara Pips",
+      title: "Filosofi GabungMeet",
       body: "Trader yang baik bukanlah trader yang selalu benar. Trader yang baik adalah trader yang memiliki sistem, memahami probabilitas, mengendalikan risiko, menerima kerugian, mengevaluasi kesalahan, serta tetap disiplin ketika kondisi pasar tidak sesuai harapan.",
       credo: "Protect the Capital. Master the Process. Trade Independently.",
       credoId: "Lindungi modal. Kuasai proses. Trading secara mandiri.",
       closing:
-        "Santara Pips hadir untuk membantu memperpendek kurva belajar trading dengan merangkum pengalaman praktis trader berpengalaman ke dalam pembelajaran yang lebih terstruktur, sederhana, dan aplikatif. Bukan untuk menjanjikan keuntungan atau profit instan, tetapi untuk membantu Anda membangun kemampuan trading yang dapat digunakan secara mandiri dalam menghadapi pasar.",
+        "GabungMeet hadir untuk membantu memperpendek kurva belajar trading dengan merangkum pengalaman praktis trader berpengalaman ke dalam pembelajaran yang lebih terstruktur, sederhana, dan aplikatif. Bukan untuk menjanjikan keuntungan atau profit instan, tetapi untuk membantu Anda membangun kemampuan trading yang dapat digunakan secara mandiri dalam menghadapi pasar.",
     },
     motto: "Learn. Manage. Execute. Evaluate.",
     disclaimer:
-      "Seluruh materi dan aktivitas Santara Pips bersifat edukasi. Trading XAUUSD/CFD memiliki risiko kerugian yang tinggi dan tidak terdapat jaminan keuntungan. Setiap keputusan transaksi merupakan tanggung jawab masing-masing trader.",
+      "Seluruh materi dan aktivitas GabungMeet bersifat edukasi. Trading XAUUSD/CFD memiliki risiko kerugian yang tinggi dan tidak terdapat jaminan keuntungan. Setiap keputusan transaksi merupakan tanggung jawab masing-masing trader.",
   },
   en: {
-    brandLine: "Santara Pips",
+    brandLine: "GabungMeet",
     tagline: "Trading Education & Community",
     badges: ["Risk Management First", "100% Technical Trading"],
     whatIs: {
       kicker: "Profile",
-      title: "What is Santara Pips?",
+      title: "What is GabungMeet?",
       paragraphs: [
         "Building traders who understand the market, manage risk, and can stand independently.",
-        "Santara Pips is a trading education community built on practical experience from traders with more than 5 years in financial markets. We understand that the biggest challenge for beginners is not lack of information, but too much unstructured information.",
-        "That is why Santara Pips simplifies the trading journey into a structured, practical learning system focused on what traders truly need to grow. Our approach is 100% technical trading, with risk management as the foundation of every decision.",
+        "GabungMeet is a trading education community built on practical experience from traders with more than 5 years in financial markets. We understand that the biggest challenge for beginners is not lack of information, but too much unstructured information.",
+        "That is why GabungMeet simplifies the trading journey into a structured, practical learning system focused on what traders truly need to grow. Our approach is 100% technical trading, with risk management as the foundation of every decision.",
       ],
     },
     notJustEntry: {
@@ -276,13 +276,13 @@ export const santaraProfile: Record<"id" | "en", SantaraProfileContent> = {
       title: "Learning from experience",
       paragraphs: [
         "More than five years of trading experience teaches one thing: markets cannot be controlled. What you can control is analysis, risk, position size, entry & exit, discipline, response to losses, and evaluation.",
-        "Santara Pips does not promise every trade will profit. Instead, we build understanding that losses are part of trading probability — while risk management determines their impact on capital.",
+        "GabungMeet does not promise every trade will profit. Instead, we build understanding that losses are part of trading probability — while risk management determines their impact on capital.",
       ],
     },
     community: {
       kicker: "Community",
       title: "A community that encourages independence",
-      body: "Santara Pips is not just a place to receive trading information — it is an environment to learn, discuss, practice, evaluate, and grow.",
+      body: "GabungMeet is not just a place to receive trading information — it is an environment to learn, discuss, practice, evaluate, and grow.",
       flow: "Learn → Discuss → Practice → Evaluate → Grow",
       closing:
         "Members exchange perspectives, discuss market conditions, and learn from others — but every analysis must still be understood and verified individually. We do not want followers; we want to build traders.",
@@ -291,20 +291,20 @@ export const santaraProfile: Record<"id" | "en", SantaraProfileContent> = {
       kicker: "Technology",
       title: "AI as a support tool",
       paragraphs: [
-        "Santara Pips also uses AI and technology to support learning and analysis — processing information, speeding workflows, aiding evaluation, and improving efficiency.",
+        "GabungMeet also uses AI and technology to support learning and analysis — processing information, speeding workflows, aiding evaluation, and improving efficiency.",
         "But AI does not replace the trader. Technology supports the process; the trader remains fully responsible for every decision.",
       ],
     },
     philosophy: {
       kicker: "Philosophy",
-      title: "Santara Pips philosophy",
+      title: "GabungMeet philosophy",
       body: "A good trader is not one who is always right. A good trader has a system, understands probability, controls risk, accepts losses, reviews mistakes, and stays disciplined when markets disagree.",
       credo: "Protect the Capital. Master the Process. Trade Independently.",
       closing:
-        "Santara Pips exists to shorten the learning curve by packaging experienced traders' practical knowledge into structured, simple, applicable education — not instant profit promises, but independent trading ability for real markets.",
+        "GabungMeet exists to shorten the learning curve by packaging experienced traders' practical knowledge into structured, simple, applicable education — not instant profit promises, but independent trading ability for real markets.",
     },
     motto: "Learn. Manage. Execute. Evaluate.",
     disclaimer:
-      "All Santara Pips materials and activities are educational. XAUUSD/CFD trading carries high loss risk with no profit guarantee. Every trading decision is the individual trader's responsibility.",
+      "All GabungMeet materials and activities are educational. XAUUSD/CFD trading carries high loss risk with no profit guarantee. Every trading decision is the individual trader's responsibility.",
   },
 };

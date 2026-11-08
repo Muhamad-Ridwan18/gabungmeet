@@ -66,13 +66,13 @@ class AuthService
             ->where('expires_at', '<', now())
             ->delete();
 
-        $accessToken = $user->createToken('access', ['*'], now()->addMinutes((int) config('santara.jwt_access_ttl_minutes', 15)))->plainTextToken;
+        $accessToken = $user->createToken('access', ['*'], now()->addMinutes((int) config('gabungmeet.jwt_access_ttl_minutes', 15)))->plainTextToken;
 
         $refreshPlain = Str::random(64);
         RefreshToken::query()->create([
             'user_id' => $user->id,
             'token_hash' => hash('sha256', $refreshPlain),
-            'expires_at' => now()->addDays((int) config('santara.jwt_refresh_ttl_days', 30)),
+            'expires_at' => now()->addDays((int) config('gabungmeet.jwt_refresh_ttl_days', 30)),
             'user_agent' => request()->userAgent(),
             'ip' => request()->ip(),
         ]);
@@ -83,7 +83,7 @@ class AuthService
                 'access_token' => $accessToken,
                 'refresh_token' => $refreshPlain,
                 'token_type' => 'Bearer',
-                'expires_in' => (int) config('santara.jwt_access_ttl_minutes', 15) * 60,
+                'expires_in' => (int) config('gabungmeet.jwt_access_ttl_minutes', 15) * 60,
             ],
         ];
     }

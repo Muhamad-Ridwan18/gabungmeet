@@ -59,7 +59,7 @@ class BillingController extends Controller
 
         $plan = Plan::query()->where('code', $data['plan_code'])->where('is_active', true)->firstOrFail();
         $user = $request->user();
-        $gateway = $data['gateway'] ?? config('santara.payment_gateway', 'midtrans');
+        $gateway = $data['gateway'] ?? config('gabungmeet.payment_gateway', 'midtrans');
 
         $subscription = Subscription::query()->create([
             'user_id' => $user->id,

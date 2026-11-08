@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s · ${APP_NAME}`,
     },
     description:
-      "Private trading community. Verify your broker with Santara Pips to unlock premium content.",
+      "Private trading community. Verify your account with GabungMeet to unlock premium content.",
     icons,
   };
 }
