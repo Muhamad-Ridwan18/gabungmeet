@@ -127,14 +127,14 @@ export default function LandingPage() {
         <div className="container-fluid relative pb-12 pt-12 md:pb-16 md:pt-14">
           <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
             <div className="animate-rise">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#c5a059]/35 bg-[#c5a059]/10 px-3 py-1 text-[11px] font-semibold text-[#c5a059]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--accent-soft)] px-3 py-1 text-[11px] font-semibold text-[var(--accent)]">
                 <Star className="h-3 w-3 fill-current" />
                 {copy.badge}
               </span>
 
               <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
                 {copy.heroTitleA}{" "}
-                <span className="text-[#c5a059]">{copy.heroTitleB}</span>
+                <span className="text-[var(--accent)]">{copy.heroTitleB}</span>
               </h1>
               <p className="mt-3 text-base font-medium text-[var(--foreground)] md:text-lg">{copy.heroSub}</p>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted md:text-[15px]">{copy.heroBody}</p>
@@ -153,9 +153,9 @@ export default function LandingPage() {
 
             <div
               id="hook"
-              className="animate-rise-delay relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(140deg,#17243a,#1a2a46)] p-2 text-white shadow-[0_24px_80px_rgba(10,20,48,0.35)] sm:p-3"
+              className="animate-rise-delay relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(140deg,var(--card),var(--surface-2))] p-2 text-[var(--foreground)] shadow-[var(--shadow)] sm:p-3"
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/35 blur-3xl" />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[var(--accent-soft)] blur-3xl" />
               <div className="relative overflow-hidden rounded-2xl border border-white/10">
                 {hookVideo?.video_url ? (
                   <LandingHookVideoPlayer
@@ -166,7 +166,7 @@ export default function LandingPage() {
                     loop={false}
                   />
                 ) : (
-                  <div className="flex aspect-[16/10] items-center justify-center gap-2 bg-[#20314d]/90 text-white/90 md:aspect-[16/9]">
+                  <div className="flex aspect-[16/10] items-center justify-center gap-2 bg-[var(--surface-2)] text-[var(--foreground)] md:aspect-[16/9]">
                     <Play className="h-5 w-5 fill-current" />
                     <p className="text-sm font-medium">{t("landing.hookTitle")}</p>
                   </div>
@@ -182,7 +182,7 @@ export default function LandingPage() {
       </div>
 
       <section className="container-fluid pb-24 pt-4">
-        <div className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(135deg,#0052ff,#003bb8)] px-6 py-12 text-center text-white md:px-14">
+        <div className="relative overflow-hidden rounded-3xl border border-[var(--border)] bg-[linear-gradient(135deg,var(--primary),var(--primary-hover))] px-6 py-12 text-center text-white md:px-14">
           <div className="pointer-events-none absolute -left-12 top-0 h-44 w-44 rounded-full bg-white/10 blur-2xl" />
           <div className="pointer-events-none absolute -right-10 bottom-0 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
           <h2 className="relative font-display text-3xl font-semibold tracking-tight md:text-4xl">{copy.ctaTitle}</h2>
