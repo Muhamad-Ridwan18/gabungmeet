@@ -65,7 +65,7 @@ App: `http://localhost:3000`
 
 **Vercel env:** `NEXT_PUBLIC_APP_NAME=GabungMeet` · `NEXT_PUBLIC_API_URL=https://api.gabungmeet.com/v1`
 
-**Backend `.env`:** `APP_URL=https://api.gabungmeet.com` · `FRONTEND_URL=https://gabungmeet.com`
+**Backend `.env`:** `APP_URL=https://api.gabungmeet.com` · `FRONTEND_URL=https://gabungmeet.com,https://www.gabungmeet.com`
 
 ## Docs
 

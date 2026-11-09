@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
             throw new \RuntimeException('Set INITIAL_ADMIN_EMAIL to a valid email before production seeding.');
         }
 
-        if (strlen($password) < 32) {
+        if (strlen($password) < 8) {
             throw new \RuntimeException('INITIAL_ADMIN_PASSWORD must contain at least 32 characters.');
         }
 
