@@ -20,7 +20,7 @@ export function AboutGabungMeetProfile() {
   const c = gabungMeetProfile[locale === "id" ? "id" : "en"];
 
   return (
-    <div className="bg-[var(--background)]">
+    <div>
       <section className="relative overflow-hidden border-b border-[var(--border)]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_80%_0%,rgba(0,82,255,0.16),transparent_55%)]" />
         <div className="relative container-fluid py-12 md:py-16">

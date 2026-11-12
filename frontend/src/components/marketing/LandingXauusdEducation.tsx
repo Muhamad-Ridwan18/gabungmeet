@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
   BarChart3,
+  ChevronDown,
   Brain,
   GitCompare,
   Layers,
@@ -16,6 +18,11 @@ import { useT } from "@/i18n/useT";
 export function LandingXauusdEducation() {
   const { locale } = useT();
   const c = xauusdEducation[locale === "id" ? "id" : "en"];
+  const [open, setOpen] = useState(false);
+  const labels =
+    locale === "id"
+      ? { more: "Baca materi lengkap", less: "Tutup materi" }
+      : { more: "Read the full material", less: "Hide material" };
 
   return (
     <div className="border-t border-[var(--border)] bg-[var(--background)]">
@@ -24,6 +31,44 @@ export function LandingXauusdEducation() {
         <h2 className="section-title mt-2 max-w-3xl">{c.title}</h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted md:text-base">{c.subtitle}</p>
       </section>
+
+      <section className="container-fluid pb-12 md:pb-14">
+        <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {c.process.steps.map((step) => (
+            <li key={step.num} className="surface-panel flex gap-3 p-4">
+              <span className="font-display text-2xl font-semibold text-accent/40">{step.num}</span>
+              <div className="min-w-0">
+                <p className="font-display text-base font-semibold">{step.title}</p>
+                <p className="mt-1 line-clamp-2 text-sm text-muted">{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-6 flex flex-wrap gap-2">
+          {c.curriculum.items.map((item) => (
+            <span
+              key={item.title}
+              className="rounded-full border border-[var(--border)] bg-[var(--card)] px-3 py-1.5 text-xs font-medium"
+            >
+              {item.title}
+            </span>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          className="btn-ghost mt-8 gap-2"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? labels.less : labels.more}
+          <ChevronDown className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />
+        </button>
+      </section>
+
+      {open ? (
+        <>
 
       <section className="border-y border-[var(--border)] bg-[var(--card)]">
         <div className="container-fluid py-12 md:py-14">
@@ -184,6 +229,15 @@ export function LandingXauusdEducation() {
           <p className="mt-3 text-xs leading-relaxed text-muted md:text-sm">{c.closing.disclaimerBody}</p>
         </div>
       </section>
+        </>
+      ) : (
+        <section className="container-fluid pb-16">
+          <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 md:p-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted">{c.closing.disclaimerLabel}</p>
+            <p className="mt-3 text-xs leading-relaxed text-muted md:text-sm">{c.closing.disclaimerBody}</p>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
