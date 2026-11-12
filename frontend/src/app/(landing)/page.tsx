@@ -5,10 +5,11 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Play, Star } from "lucide-react";
 import { LandingHookVideoPlayer } from "@/components/landing/LandingHookVideoPlayer";
 import type { MarketQuote } from "@/components/landing/landing-types";
-import { LandingXauusdEducation } from "@/components/marketing/LandingXauusdEducation";
+import { LandingSections } from "@/components/landing/LandingSections";
+import { defaultLandingContent } from "@/content/landing-defaults";
 import { ROUTES } from "@/constants";
 import { track } from "@/lib/analytics";
-import { getHookVideo, type HookVideo } from "@/services/landing";
+import { getHookVideo, getLandingContent, type HookVideo, type LandingContent } from "@/services/landing";
 import { useT } from "@/i18n/useT";
 
 export default function LandingPage() {
@@ -16,6 +17,7 @@ export default function LandingPage() {
   const [hookVideo, setHookVideo] = useState<HookVideo | null>(null);
   const [quotes, setQuotes] = useState<MarketQuote[]>([]);
   const [marketLive, setMarketLive] = useState(false);
+  const [content, setContent] = useState<LandingContent>(defaultLandingContent);
 
   async function loadQuotes(signal?: AbortSignal) {
     const res = await fetch("/api/market", { cache: "no-store", signal });
@@ -40,6 +42,14 @@ export default function LandingPage() {
         if (alive) setHookVideo(null);
       }
     })();
+    void (async () => {
+      try {
+        const res = await getLandingContent();
+        if (alive && res.success && res.data && res.data.sections) setContent(res.data);
+      } catch {
+        /* keep the built-in default content */
+      }
+    })();
     return () => {
       alive = false;
     };
@@ -61,34 +71,21 @@ export default function LandingPage() {
     };
   }, []);
 
-  const copy =
-    locale === "id"
-      ? {
-          badge: "#1 Community Trading",
-          heroTitleA: "Gabung",
-          heroTitleB: "Meet",
-          heroSub: "Copy Trade · Safe · Steady Growth",
-          heroBody:
-            "Komunitas trading dengan edukasi, analisis pasar, dan sinyal yang membantu Anda tumbuh lebih terarah.",
-          joinNow: "Daftar Gratis",
-          ctaTitle: "Siap mulai perjalanan trading Anda?",
-          ctaBody:
-            "Daftar gratis, pelajari materi edukasi, lalu selesaikan verifikasi saat siap membuka fitur premium.",
-          ctaBtn: "Daftar Sekarang",
-        }
-      : {
-          badge: "#1 Community Trading",
-          heroTitleA: "Gabung",
-          heroTitleB: "Meet",
-          heroSub: "Copy Trade · Safe · Steady Growth",
-          heroBody:
-            "A trading community with education, market analysis, and signals that help you grow with clearer direction.",
-          joinNow: "Register Free",
-          ctaTitle: "Ready to start your trading journey?",
-          ctaBody:
-            "Register free, study the education material, then complete verification when you're ready for premium access.",
-          ctaBtn: "Register Now",
-        };
+  const loc = locale === "id" ? "id" : "en";
+  const hero = content.hero[loc] ?? defaultLandingContent.hero[loc];
+  const cta = content.cta[loc] ?? defaultLandingContent.cta[loc];
+  const copy = {
+    badge: hero.badge,
+    heroTitleA: hero.title_a,
+    heroTitleB: hero.title_b,
+    heroSub: hero.subtitle,
+    heroBody: hero.body,
+    joinNow: hero.cta,
+    ctaTitle: cta.title,
+    ctaBody: cta.body,
+    ctaBtn: cta.button,
+    login: cta.login,
+  };
 
   const displayQuotes = quotes.length > 0 ? quotes : [];
 
@@ -178,7 +175,7 @@ export default function LandingPage() {
       </section>
 
       <div id="education">
-        <LandingXauusdEducation />
+        <LandingSections content={content} locale={loc} />
       </div>
 
       <section className="container-fluid pb-24 pt-4">
@@ -202,7 +199,7 @@ export default function LandingPage() {
               href={ROUTES.login}
               className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
-              {locale === "id" ? "Masuk Member" : "Member Login"}
+              {copy.login}
             </Link>
           </div>
         </div>

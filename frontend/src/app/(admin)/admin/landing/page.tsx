@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AdminPageHeader } from "@/components/admin/AdminChrome";
+import { LandingContentEditor } from "@/components/admin/LandingContentEditor";
 import { LandingHookVideoPlayer } from "@/components/landing/LandingHookVideoPlayer";
 import { StatusBadge, statusTone } from "@/components/ui/StatusBadge";
 import {
@@ -81,6 +82,7 @@ export default function AdminLandingPage() {
     : null;
 
   return (
+    <div className="space-y-12">
     <div className="max-w-3xl">
       <AdminPageHeader
         title={t("admin.landingTitle")}
@@ -255,6 +257,8 @@ export default function AdminLandingPage() {
           </button>
         </div>
       </div>
+    </div>
+    <LandingContentEditor />
     </div>
   );
 }

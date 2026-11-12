@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\V1\AdminBonusController;
 use App\Http\Controllers\Api\V1\AdminContentController;
 use App\Http\Controllers\Api\V1\AdminMemberHomeController;
 use App\Http\Controllers\Api\V1\AdminOnboardingVideosController;
+use App\Http\Controllers\Api\V1\AdminLandingContentController;
 use App\Http\Controllers\Api\V1\AdminLandingHookVideoController;
 use App\Http\Controllers\Api\V1\AdminJournalController;
 use App\Http\Controllers\Api\V1\AdminTelegramController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\Api\V1\BonusController;
 use App\Http\Controllers\Api\V1\ContentController;
 use App\Http\Controllers\Api\V1\HealthController;
 use App\Http\Controllers\Api\V1\JournalController;
+use App\Http\Controllers\Api\V1\LandingContentController;
 use App\Http\Controllers\Api\V1\LandingHookVideoController;
 use App\Http\Controllers\Api\V1\MemberHomeController;
 use App\Http\Controllers\Api\V1\NotificationController;
@@ -51,6 +53,7 @@ Route::prefix('v1')->group(function () {
     Route::get('/settings/public', [SettingsController::class, 'publicSettings']);
     Route::get('/settings/branding', [BrandingController::class, 'show']);
     Route::get('/landing/hook-video', [LandingHookVideoController::class, 'show']);
+    Route::get('/landing/content', [LandingContentController::class, 'show']);
 
     // Optional auth routes
     Route::middleware('optional.auth')->group(function () {
@@ -174,6 +177,8 @@ Route::prefix('v1')->group(function () {
 
             Route::get('/landing/hook-video', [AdminLandingHookVideoController::class, 'show']);
             Route::put('/landing/hook-video', [AdminLandingHookVideoController::class, 'update']);
+            Route::get('/landing/content', [AdminLandingContentController::class, 'show']);
+            Route::put('/landing/content', [AdminLandingContentController::class, 'update']);
 
             Route::get('/branding', [AdminBrandingController::class, 'show']);
             Route::put('/branding', [AdminBrandingController::class, 'update']);
