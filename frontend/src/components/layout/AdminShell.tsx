@@ -77,7 +77,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-screen bg-[var(--background)]">
+    <div className="flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-52 shrink-0 flex-col border-r border-[var(--border)] bg-[var(--sidebar)] md:flex">
         <div className="border-b border-[var(--border)] px-4 py-4">
           <AppLogo href={ROUTES.admin} />

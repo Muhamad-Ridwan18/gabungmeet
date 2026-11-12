@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   const { t } = useT();
 
   return (
-    <div className="app-shell relative flex min-h-screen bg-[var(--background)]">
+    <div className="app-shell relative flex min-h-screen">
       <aside className="relative hidden w-[42%] flex-col justify-between overflow-hidden border-r border-[var(--border)] bg-[var(--card)] p-10 lg:flex">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_20%_0%,rgba(0,82,255,0.16),transparent_55%)]" />
         <div className="relative">
