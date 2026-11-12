@@ -5,8 +5,8 @@ import { APP_NAME, ROUTES } from "@/constants";
 import { cn } from "@/lib/utils";
 import { useThemeStore } from "@/store/theme";
 
-const LIGHT_LOGO = "/logo-gabungmeet.jpeg";
-const DARK_LOGO = "/logo-gabungmeet-dark.jpeg";
+const LIGHT_LOGO = "/logo-gabungmeet.png";
+const DARK_LOGO = "/logo-gabungmeet-dark.png";
 
 type AppLogoProps = {
   href?: string;
@@ -26,7 +26,7 @@ export function AppLogo({ href = ROUTES.home, compact, className, markClassName 
         alt={APP_NAME}
         className={cn(
           compact ? "h-9 w-12" : "h-10 w-14 md:h-12 md:w-16",
-          "rounded object-cover",
+          "object-contain",
           markClassName,
         )}
       />

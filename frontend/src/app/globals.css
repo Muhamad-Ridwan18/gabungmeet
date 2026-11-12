@@ -30,14 +30,16 @@
   --shadow: 0 10px 40px rgba(27, 29, 34, 0.06);
   --nav-active: var(--accent-soft);
   --nav-active-fg: var(--accent);
+  --page-glow: radial-gradient(ellipse 90% 40% at 50% -10%, var(--glow), transparent 55%);
+  --sheen: none;
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #11131a;
+  --foreground: #f4f5f8;
   --muted: #a1a1aa;
-  --card: #0a0a0b;
-  --card-solid: #0a0a0b;
+  --card: #14161e;
+  --card-solid: #181b24;
   --border: rgba(255, 255, 255, 0.1);
   --accent: #818cf8;
   --accent-soft: rgba(99, 102, 241, 0.16);
@@ -45,17 +47,25 @@
   --primary-hover: #6d70ff;
   --danger: #f87171;
   --success: #4ade80;
-  --input: #111113;
-  --header: rgba(0, 0, 0, 0.9);
+  --input: #181b24;
+  --header: rgba(20, 22, 30, 0.72);
   --btn-fg: #ffffff;
   --ring: rgba(99, 102, 241, 0.45);
   --chart-line: rgba(129, 140, 248, 0.45);
   --grid-line: rgba(255, 255, 255, 0.07);
   --glow: rgba(99, 102, 241, 0.14);
-  --surface: #0a0a0b;
-  --surface-2: #151517;
-  --sidebar: #050506;
-  --shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  --surface: #14161e;
+  --surface-2: #1b1e28;
+  --sidebar: #0e1017;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  /* Dark mode: graphite base with a soft silver/white glow instead of pure black */
+  --page-glow:
+    radial-gradient(ellipse 80% 45% at 50% -8%, rgba(255, 255, 255, 0.17), transparent 62%),
+    radial-gradient(ellipse 50% 40% at 100% 30%, rgba(129, 140, 248, 0.1), transparent 70%),
+    linear-gradient(180deg, #171a23 0%, #10121a 55%, #0c0d13 100%);
+  --sheen: linear-gradient(155deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.035) 45%, rgba(255, 255, 255, 0.02) 100%);
+  --sheen-sidebar: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(255, 255, 255, 0.035) 100%);
+  --rim: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   --nav-active: var(--accent-soft);
   --nav-active-fg: var(--accent);
 }
@@ -72,6 +82,8 @@ html.dark {
 body {
   color: var(--foreground);
   background-color: var(--background);
+  background-image: var(--page-glow);
+  background-attachment: fixed;
   min-height: 100vh;
   font-family: var(--font-body), system-ui, sans-serif;
   letter-spacing: -0.011em;
@@ -85,9 +97,7 @@ body {
 }
 
 .dark .marketing-shell {
-  background-image:
-    radial-gradient(ellipse 80% 50% at 80% 0%, var(--glow), transparent 55%),
-    linear-gradient(to bottom, var(--background), var(--background));
+  background-image: none;
 }
 
 /* Responsive container: full on small screens, capped around xl */
@@ -112,8 +122,27 @@ body {
 
 body.app-shell {
   background-color: var(--background);
-  background-image:
-    radial-gradient(ellipse 90% 40% at 50% -10%, var(--glow), transparent 55%);
+  background-image: var(--page-glow);
+  background-attachment: fixed;
+}
+
+/* Dark mode sheen on cards and sidebar (also covers Tailwind bg-[var(--card)] usages) */
+.dark .surface-panel,
+.dark .surface-elevated,
+.dark .auth-shell,
+.dark .glass,
+.dark [class*="bg-[var(--card)]"] {
+  background-image: var(--sheen);
+  box-shadow: var(--rim);
+}
+
+.dark .surface-elevated,
+.dark .auth-shell {
+  box-shadow: var(--rim), var(--shadow);
+}
+
+.dark [class*="bg-[var(--sidebar)]"] {
+  background-image: var(--sheen-sidebar);
 }
 
 h1,
