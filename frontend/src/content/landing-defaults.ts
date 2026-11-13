@@ -85,10 +85,10 @@ function buildSections(): LandingSection[] {
       body: paragraphs(x(l).mindset.paragraphs),
       items: [{ title: x(l).mindset.paramsLabel, body: x(l).mindset.paramsText }],
     })),
-    section("process", "steps", true, (l) => ({
+    section("process", "image_cards", true, (l) => ({
       kicker: x(l).process.kicker,
       title: x(l).process.title,
-      items: x(l).process.steps.map((s) => ({ title: s.title, body: s.body })),
+      items: x(l).process.steps.map((s) => ({ title: s.title, body: s.body, image: "", link: "" })),
     })),
     section("curriculum", "cards", true, (l) => ({
       kicker: x(l).curriculum.kicker,

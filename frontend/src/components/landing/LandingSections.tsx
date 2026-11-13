@@ -1,6 +1,6 @@
 "use client";
 
-import type { LandingContent, LandingLocale, LandingSection } from "@/services/landing";
+import type { LandingContent, LandingItem, LandingLocale, LandingSection } from "@/services/landing";
 import { cn } from "@/lib/utils";
 
 function looksLikeHtml(value: string) {
@@ -15,6 +15,42 @@ function RichBody({ html, className }: { html: string; className?: string }) {
     return <p className={cn(base, "whitespace-pre-line", className)}>{html}</p>;
   }
   return <div className={cn("content-html", base, className)} dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+function ImageCard({ item }: { item: LandingItem }) {
+  const inner = (
+    <>
+      <div className="aspect-square w-full overflow-hidden bg-[var(--surface-2)]">
+        {item.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.image}
+            alt={item.title || ""}
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          />
+        ) : null}
+      </div>
+      {item.title || item.body ? (
+        <div className="p-4">
+          {item.title ? <p className="font-display text-base font-semibold">{item.title}</p> : null}
+          {item.body ? <p className="mt-1 whitespace-pre-line text-sm leading-relaxed text-muted">{item.body}</p> : null}
+        </div>
+      ) : null}
+    </>
+  );
+  const cls = "group surface-panel block overflow-hidden";
+  if (!item.link) return <article className={cls}>{inner}</article>;
+  const external = /^https?:\/\//i.test(item.link);
+  return (
+    <a
+      href={item.link}
+      className={cn(cls, "transition hover:border-[var(--accent)]")}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
+      {inner}
+    </a>
+  );
 }
 
 function SectionBody({ section, locale }: { section: LandingSection; locale: LandingLocale }) {
@@ -34,6 +70,14 @@ function SectionBody({ section, locale }: { section: LandingSection; locale: Lan
               <p className="font-display text-base font-semibold">{item.title}</p>
               {item.body ? <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted">{item.body}</p> : null}
             </article>
+          ))}
+        </div>
+      ) : null}
+
+      {section.kind === "image_cards" && items.length > 0 ? (
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item, i) => (
+            <ImageCard key={`${item.title}-${i}`} item={item} />
           ))}
         </div>
       ) : null}

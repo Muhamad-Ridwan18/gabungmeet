@@ -15,7 +15,7 @@ class LandingContentService
 
     private const LOCALES = ['id', 'en'];
 
-    private const KINDS = ['text', 'cards', 'steps', 'chips', 'compare'];
+    private const KINDS = ['text', 'cards', 'steps', 'chips', 'compare', 'image_cards'];
 
     private const ALLOWED_TAGS = '<p><br><strong><b><em><i><u><ul><ol><li><h2><h3><blockquote><a>';
 
@@ -156,6 +156,8 @@ class LandingContentService
             $out[] = [
                 'title' => $this->text($item['title'] ?? '', 200),
                 'body' => $this->text($item['body'] ?? '', 1500),
+                'image' => $this->url($item['image'] ?? ''),
+                'link' => $this->url($item['link'] ?? ''),
             ];
         }
 
@@ -177,6 +179,23 @@ class LandingContentService
     private function text(mixed $value, int $max): string
     {
         return mb_substr(trim(strip_tags((string) $value)), 0, $max);
+    }
+
+    /** Only http(s) URLs (or site-relative paths) survive; anything else is dropped. */
+    private function url(mixed $value): string
+    {
+        $v = mb_substr(trim((string) $value), 0, 500);
+        if ($v === '') {
+            return '';
+        }
+        if (preg_match('#^https?://#i', $v)) {
+            return filter_var($v, FILTER_VALIDATE_URL) ? $v : '';
+        }
+        if (str_starts_with($v, '/') && ! str_starts_with($v, '//')) {
+            return $v;
+        }
+
+        return '';
     }
 
     /** Rich text from the admin editor: keep a small set of tags and drop script vectors. */

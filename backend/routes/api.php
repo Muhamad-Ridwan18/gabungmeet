@@ -174,6 +174,7 @@ Route::prefix('v1')->group(function () {
 
             Route::post('/uploads', [UploadController::class, 'storeAdmin']);
             Route::post('/uploads/video', [UploadController::class, 'storeAdminVideo']);
+            Route::post('/uploads/image', [UploadController::class, 'storeAdminImage']);
 
             Route::get('/landing/hook-video', [AdminLandingHookVideoController::class, 'show']);
             Route::put('/landing/hook-video', [AdminLandingHookVideoController::class, 'update']);

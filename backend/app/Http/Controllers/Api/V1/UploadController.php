@@ -63,6 +63,21 @@ class UploadController extends Controller
         );
     }
 
+    public function storeAdminImage(Request $request)
+    {
+        $request->validate(['file' => ['required', 'file']]);
+
+        return $this->fromService(
+            fn () => $this->uploads->store(
+                $request->file('file'),
+                'landing',
+                true
+            ),
+            'Uploaded',
+            201
+        );
+    }
+
     /** @param list<string> $allowed */
     private function resolvePurpose(Request $request, array $allowed): string
     {

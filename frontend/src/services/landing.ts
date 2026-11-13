@@ -47,13 +47,22 @@ export async function adminUploadHookVideo(file: File) {
   return data;
 }
 
+export async function adminUploadLandingImage(file: File) {
+  const form = new FormData();
+  form.append("file", file);
+  const { data } = await api.post<ApiEnvelope<{ key: string; url: string }>>("/admin/uploads/image", form, {
+    timeout: 60_000,
+  });
+  return data;
+}
+
 /* ---------- Editable landing page content ---------- */
 
 export type LandingLocale = "id" | "en";
 
-export type LandingSectionKind = "text" | "cards" | "steps" | "chips" | "compare";
+export type LandingSectionKind = "text" | "cards" | "steps" | "chips" | "compare" | "image_cards";
 
-export type LandingItem = { title: string; body: string };
+export type LandingItem = { title: string; body: string; image?: string; link?: string };
 
 export type LandingSectionText = {
   kicker: string;

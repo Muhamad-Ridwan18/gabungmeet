@@ -7,6 +7,7 @@ import { buildDefaultLandingContent } from "@/content/landing-defaults";
 import {
   adminGetLandingContent,
   adminUpdateLandingContent,
+  adminUploadLandingImage,
   type LandingContent,
   type LandingItem,
   type LandingLocale,
@@ -22,6 +23,7 @@ const KIND_LABEL: Record<LandingSectionKind, string> = {
   steps: "Langkah bernomor",
   chips: "Chip pendek",
   compare: "Perbandingan 2 kolom",
+  image_cards: "Kartu gambar (kotak + link)",
 };
 
 const KIND_HINT: Record<LandingSectionKind, string> = {
@@ -30,7 +32,62 @@ const KIND_HINT: Record<LandingSectionKind, string> = {
   steps: "Kartu bernomor otomatis 01, 02, 03, dan seterusnya.",
   chips: "Label pendek. Hanya judul item yang tampil.",
   compare: "Dua kolom. Judul item = kolom kiri, deskripsi = kolom kanan.",
+  image_cards: "Kartu kotak berisi gambar. Klik gambar membuka link. Judul dan deskripsi opsional.",
 };
+
+function ImageUpload({ value, onChange }: { value: string; onChange: (url: string) => void }) {
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  const pick = async (file: File | undefined) => {
+    if (!file) return;
+    setBusy(true);
+    setErr(null);
+    try {
+      const res = await adminUploadLandingImage(file);
+      if (!res.success || !res.data) throw new Error(res.message || "upload failed");
+      onChange(res.data.url);
+    } catch {
+      setErr("Gagal upload gambar (JPG/PNG/WEBP/GIF, maks 5MB).");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface-2)] text-[10px] text-muted">
+        {value ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={value} alt="" className="h-full w-full object-cover" />
+        ) : (
+          "Kotak"
+        )}
+      </div>
+      <div className="min-w-0 space-y-1">
+        <label className="btn-ghost inline-flex cursor-pointer px-3 py-1.5 text-xs">
+          {busy ? "Mengunggah..." : value ? "Ganti gambar" : "Upload gambar"}
+          <input
+            type="file"
+            accept="image/png,image/jpeg,image/webp,image/gif"
+            className="hidden"
+            disabled={busy}
+            onChange={(e) => {
+              void pick(e.target.files?.[0]);
+              e.target.value = "";
+            }}
+          />
+        </label>
+        {value ? (
+          <button type="button" className="ml-2 text-xs text-[var(--danger)]" onClick={() => onChange("")}>
+            Hapus
+          </button>
+        ) : null}
+        {err ? <p className="text-xs text-[var(--danger)]">{err}</p> : null}
+      </div>
+    </div>
+  );
+}
 
 const emptyText: LandingSectionText = { kicker: "", title: "", body: "", col_a: "", col_b: "", items: [] };
 
@@ -338,7 +395,7 @@ export function LandingContentEditor() {
                               <input
                                 className="field-input w-full"
                                 value={item.title}
-                                placeholder={section.kind === "compare" ? "Kolom kiri" : "Judul"}
+                                placeholder={section.kind === "compare" ? "Kolom kiri" : section.kind === "image_cards" ? "Judul (opsional)" : "Judul"}
                                 onChange={(e) => patchItem(index, j, { title: e.target.value })}
                               />
                               <button
@@ -350,11 +407,22 @@ export function LandingContentEditor() {
                                 <Trash2 className="h-4 w-4" />
                               </button>
                             </div>
+                            {section.kind === "image_cards" ? (
+                              <>
+                                <ImageUpload value={item.image ?? ""} onChange={(url) => patchItem(index, j, { image: url })} />
+                                <input
+                                  className="field-input w-full"
+                                  value={item.link ?? ""}
+                                  placeholder="Link saat gambar diklik (https://... atau /halaman)"
+                                  onChange={(e) => patchItem(index, j, { link: e.target.value })}
+                                />
+                              </>
+                            ) : null}
                             {section.kind !== "chips" ? (
                               <textarea
                                 className="field-input min-h-[64px] w-full"
                                 value={item.body}
-                                placeholder={section.kind === "compare" ? "Kolom kanan" : "Deskripsi"}
+                                placeholder={section.kind === "compare" ? "Kolom kanan" : section.kind === "image_cards" ? "Deskripsi (opsional)" : "Deskripsi"}
                                 onChange={(e) => patchItem(index, j, { body: e.target.value })}
                               />
                             ) : null}
